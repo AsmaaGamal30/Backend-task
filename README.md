@@ -7,60 +7,89 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Task Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2- Use SQLite Database. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3- Make authentication system using Sanctum. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+a. /register endpoint that receives and validates the following: 
 
-## Learning Laravel
+i. Name. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ii. Phone number. 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+iii. Password.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+b. /login endpoint. 
 
-## Laravel Sponsors
+c. Both of the previous endpoint should return the user data with access token. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+d. Generate random 6-digits verification code for every user.
 
-### Premium Partners
+e. Send the code for every user (Just log it). 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+f. Make an endpoint that verifies the code sent to the user. 
 
-## Contributing
+g. Only verified accounts can login to the system. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4- Create tags API resource. 
 
-## Code of Conduct
+a. Authenticated users can view all tags. 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+b. Authenticated users can store new tags.
 
-## Security Vulnerabilities
+c. Authenticated users can update single tag. 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+d. Authenticated users can delete single tag. 
 
-## License
+e. Tags only has names and the name should be a unique one. 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5- Create posts API resource. 
+
+a. Authenticated users can view only their posts. 
+
+b. Authenticated users can store new posts. 
+
+c. Authenticated users can view a single post of their posts. 
+
+d. Authenticated users can update single post of their posts. 
+
+e. Authenticated users can delete (Softly) single post of their posts. 
+
+f. Authenticated users can view their deleted posts. 
+
+g. Authenticated users can restore one of their deleted posts. 
+
+h. Posts have the following data: 
+
+i. Title. [Required, Maximum Characters: 255] 
+
+ii. Body. [Required, String]
+
+iii. Cover image. [Required only when storing, Optional when updating, Image] 
+
+iv. Pinned. [Required, Boolean] 
+
+v. One or more tags. (Hint: Many-to-many Relationship). 
+
+i. Pinned Posts should appear first for every user. 
+
+j. All the received data for storing and updating posts should be validated. 
+
+6- Create a Job that runs daily and force-deletes all softly-deleted posts for more than 30 days.
+
+7- Create a job that runs every six hours and makes HTTP Request to this end endpoint and log only the results 
+object in the response. https://randomuser.me/api/ 
+
+8- Make /stats API endpoint. 
+
+a.  That endpoint should return the following: 
+
+i. Number of all users. 
+
+ii. Number of all posts. 
+
+iii. Number of users with 0 posts. 
+
+b. The results should be cached and update with every update to the related models (User and Post).
